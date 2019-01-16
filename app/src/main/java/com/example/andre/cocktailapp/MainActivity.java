@@ -8,7 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -21,6 +25,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
 
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     protected Object doInBackground(Object[] objects) {
                         OkHttpClient client = new OkHttpClient();
                         Request request = new Request.Builder()
-                                .url("http://api.population.io:80/1.0/population/1980/Brazil/18/")
+                                .url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
                                 .build();
                         Response response = null;
 
@@ -62,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 }.execute();
             }
         });
+    }
+    /** Called when the user taps the Send button */
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        //EditText editText = (EditText) findViewById(R.id.editText);
+       // String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, "ahoj");
+        startActivity(intent);
 
     }
 }
