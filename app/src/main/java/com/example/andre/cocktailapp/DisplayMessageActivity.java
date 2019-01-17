@@ -14,11 +14,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import com.google.gson.*;
 
-import com.squareup.moshi.*;
 
 import org.json.JSONObject;
 
@@ -68,24 +69,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
                     @Override
                     protected void onPostExecute(Object o) {
                         String json = o.toString();
-                        Moshi moshi = new Moshi.Builder().build();
-                        JsonAdapter<DrinkList> jsonAdapter = moshi.adapter(DrinkList.class);
-
-
-
-                        try{
-                            DrinkList drinkList = jsonAdapter.fromJson(json);
-
-                            textView2.setText(drinkList.drinks);
-                        }
-                        catch(java.io.IOException ref)
-                        {
-                            System.out.println(ref);
-                        }
-
-
-
-
+                        Gson gson = new Gson();
+                        DrinkList drinkList = gson.fromJson(json,DrinkList.class);
+                        System.out.println(drinkList.drinks.get(0).strDrink);
+                        textView2.setText(drinkList.drinks.get(0).strDrink);
+                        
                     }
 
 
