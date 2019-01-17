@@ -6,7 +6,10 @@ import java.util.ArrayList;
  * Created by andre on 17. 1. 2019.
  */
 
-public class DrinList {
+
+
+
+public class DrinkList {
     public final ArrayList<Drink>drinks = new ArrayList<Drink>();
 }
 

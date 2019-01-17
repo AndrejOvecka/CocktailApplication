@@ -18,9 +18,12 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import com.squareup.moshi.*;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
+
 
 
 public class DisplayMessageActivity extends AppCompatActivity {
@@ -40,13 +43,14 @@ public class DisplayMessageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AsyncTask asyncTask = new AsyncTask() {
                     @Override
+
                     protected Object doInBackground(Object[] objects) {
                         OkHttpClient client = new OkHttpClient();
                         String cocktail_name = editTextName.getText().toString().replace(" ", "+");
                         Request request = new Request.Builder()
                                 .url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktail_name)
                                 .build();
-                        JSONObject obj_JSONObject = new JSONObject()
+
                         Response response = null;
 
                         try{
@@ -60,12 +64,36 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         return null;
                     }
 
+
                     @Override
                     protected void onPostExecute(Object o) {
-                        textView2.setText(o.toString());
+                        String json = o.toString();
+                        Moshi moshi = new Moshi.Builder().build();
+                        JsonAdapter<DrinkList> jsonAdapter = moshi.adapter(DrinkList.class);
+
+
+
+                        try{
+                            DrinkList drinkList = jsonAdapter.fromJson(json);
+
+                            textView2.setText(drinkList.drinks);
+                        }
+                        catch(java.io.IOException ref)
+                        {
+                            System.out.println(ref);
+                        }
+
+
+
+
                     }
+
+
                 }.execute();
+
+
             }
+
         });
     }
 }
