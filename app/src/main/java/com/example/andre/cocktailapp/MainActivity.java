@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     protected Object doInBackground(Object[] objects) {
                         OkHttpClient client = new OkHttpClient();
                         Request request = new Request.Builder()
-                                .url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
+                                .url("https://www.thecocktaildb.com/api/json/v1/1/random.php")
                                 .build();
                         Response response = null;
 
