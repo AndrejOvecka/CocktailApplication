@@ -35,7 +35,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_message);
         Button button = findViewById(R.id.button2);
         final EditText editTextName = findViewById(R.id.editTextName);
-
+        final TextView textView3 = findViewById(R.id.textView4);
         final TextView textView2 = findViewById(R.id.textView3);
 
 
@@ -73,7 +73,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         DrinkList drinkList = gson.fromJson(json,DrinkList.class);
                         System.out.println(drinkList.drinks.get(0).strDrink);
                         textView2.setText(drinkList.drinks.get(0).strDrink);
-                        
+                        textView3.setText(drinkList.drinks.get(0).strCategory);
+
                     }
 
 

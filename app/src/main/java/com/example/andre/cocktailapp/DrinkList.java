@@ -15,4 +15,5 @@ public class DrinkList {
 
 class Drink{
     public final String strDrink = null;
+    public final String strCategory = null;
 }
