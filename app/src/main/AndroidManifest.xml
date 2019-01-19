@@ -12,7 +12,14 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RandomDrink"></activity>
+        <activity
+            android:name=".RandomDrink"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -38,6 +45,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
     </application>
 
 </manifest>
