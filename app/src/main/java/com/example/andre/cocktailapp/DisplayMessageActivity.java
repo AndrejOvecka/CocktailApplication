@@ -37,7 +37,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         final EditText editTextName = findViewById(R.id.editTextName);
         final TextView textView3 = findViewById(R.id.textView4);
         final TextView textView2 = findViewById(R.id.textView3);
-
+        final String cocktail_name = editTextName.getText().toString().replace(" ", "+");
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,14 +47,15 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
                     protected Object doInBackground(Object[] objects) {
                         OkHttpClient client = new OkHttpClient();
-                        String cocktail_name = editTextName.getText().toString().replace(" ", "+");
+
                         Request request = new Request.Builder()
                                 .url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktail_name)
                                 .build();
 
-                        Response response = null;
 
+                        Response response = null;
                         try{
+
                             response = client.newCall(request).execute();
                             return response.body().string();
                         }

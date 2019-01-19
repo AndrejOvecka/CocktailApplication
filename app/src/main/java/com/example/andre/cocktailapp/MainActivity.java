@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -24,6 +25,8 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 private Button Button;
+String message;
+
 
 
     @Override
@@ -40,7 +43,49 @@ private Button Button;
             @Override
             public void onClick(View v) {
                 openRandomDrink();
-            }
+
+
+
+
+            AsyncTask asyncTask = new AsyncTask() {
+                @Override
+
+                protected Object doInBackground(Object[] objects) {
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+                            .build();
+
+                    Response response = null;
+
+                    try {
+                        response = client.newCall(request).execute();
+                        return response.body().string();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+
+                    }
+                @Override
+                protected void onPostExecute(Object o) {
+                    String json = o.toString();
+                    Gson gson = new Gson();
+                    DrinkList drinkList = gson.fromJson(json,DrinkList.class);
+                    System.out.println(drinkList.drinks.get(0).strDrink);
+                    message = o.toString();
+
+
+                }
+
+
+            }.execute();
+                Intent intent = new Intent(MainActivity.this, RandomDrink.class);
+                intent.putExtra("RESPONSE", message);
+                startActivity(intent);
+
+        }
 
 
 
