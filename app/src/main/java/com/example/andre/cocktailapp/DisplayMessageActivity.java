@@ -95,7 +95,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         textView2.setText("Name: " + drinkList.drinks.get(0).strDrink);
                         textView3.setText("Category: " + drinkList.drinks.get(0).strCategory);
                         textView4.setText("Instructions: " + drinkList.drinks.get(0).strInstructions);
-                        textView5.setText("Ingredients: ");
+                        textView5.setText("Ingredients: " + "\n");
                         Picasso.get().load(drinkList.drinks.get(0).strDrinkThumb).into(imageView);
                         closeKeyboard();
                         Drink drink = drinkList.drinks.get(0);
@@ -116,10 +116,10 @@ public class DisplayMessageActivity extends AppCompatActivity {
                             String ingredient = ingredients.get(i).second;
 
                             if(!measure.trim().isEmpty() && !ingredient.trim().isEmpty()){
-                                textView5.append("Item : " + i + ": " + measure + " - " +ingredient);
+                                textView5.append(measure + " - " +ingredient + "\n");
                             }
                             else if(measure.trim().isEmpty() && !ingredient.trim().isEmpty()){
-                                textView5.append("Item : " + i + ": " + ingredient);
+                                textView5.append(ingredient + "\n");
                             }
 
                         }
