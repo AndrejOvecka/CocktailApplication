@@ -25,7 +25,8 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 private Button Button;
-String message;
+String name;
+String category;
 
 
 
@@ -70,27 +71,25 @@ String message;
                     }
                 @Override
                 protected void onPostExecute(Object o) {
-                    String json = o.toString();
-                    Gson gson = new Gson();
-                    DrinkList drinkList = gson.fromJson(json,DrinkList.class);
-                    System.out.println(drinkList.drinks.get(0).strDrink);
-                    message = o.toString();
-
-
+                    processPostExecute(o);
                 }
-
-
             }.execute();
-                Intent intent = new Intent(MainActivity.this, RandomDrink.class);
-                intent.putExtra("RESPONSE", message);
-                startActivity(intent);
-
         }
-
-
-
         });
     }
+
+    private void processPostExecute(Object o){
+        String json = o.toString();
+        Gson gson = new Gson();
+        DrinkList drinkList = gson.fromJson(json,DrinkList.class);
+        System.out.println(drinkList.drinks.get(0).strDrink);
+        name =(drinkList.drinks.get(0).strDrink);
+        category = (drinkList.drinks.get(0).strCategory);
+        Intent intent = new Intent(MainActivity.this, RandomDrink.class);
+        intent.putExtra("NAME", name);
+        intent.putExtra("CATEGORY", category);
+        startActivity(intent);    }
+
 
     public void openRandomDrink(){
         Intent intent  = new Intent(this, RandomDrink.class);
