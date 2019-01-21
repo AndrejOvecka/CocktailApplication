@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -97,37 +98,30 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         textView5.setText("Ingredients: ");
                         Picasso.get().load(drinkList.drinks.get(0).strDrinkThumb).into(imageView);
                         closeKeyboard();
-                        if(((drinkList.drinks.get(0).strMeasure1.toString() != "") || (drinkList.drinks.get(0).strMeasure1.toString() != " ")) && ((drinkList.drinks.get(0).strIngredient1 != "") || (drinkList.drinks.get(0).strIngredient1 != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure1 + " - " + drinkList.drinks.get(0).strIngredient1);
-                        }
-                        if(((drinkList.drinks.get(0).strIngredient2 != "") || (drinkList.drinks.get(0).strIngredient2 != " ")) && ((drinkList.drinks.get(0).strIngredient2 != "") || (drinkList.drinks.get(0).strIngredient2 != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure2 + " - " + drinkList.drinks.get(0).strIngredient2);
-                        }
-                        if(((drinkList.drinks.get(0).strIngredient3 != "") || (drinkList.drinks.get(0).strIngredient3 != " ")) && ((drinkList.drinks.get(0).strIngredient3 != "") || (drinkList.drinks.get(0).strIngredient3 != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure3 + " - " + drinkList.drinks.get(0).strIngredient3);
-                        }
-                        if(((drinkList.drinks.get(0).strIngredient4 != "") || (drinkList.drinks.get(0).strIngredient4 != " ")) && ((drinkList.drinks.get(0).strIngredient4 != "") || (drinkList.drinks.get(0).strIngredient4 != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure4 + " - " + drinkList.drinks.get(0).strIngredient4);
-                        }
-                        if(((drinkList.drinks.get(0).strIngredient5 != "") || (drinkList.drinks.get(0).strIngredient5 != " ")) && ((drinkList.drinks.get(0).strIngredient5 != "") || (drinkList.drinks.get(0).strIngredient5 != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure5 + " - " + drinkList.drinks.get(0).strIngredient5);
-                        }
-                        if(((drinkList.drinks.get(0).strIngredient6 != "") || (drinkList.drinks.get(0).strIngredient6 != " ")) && ((drinkList.drinks.get(0).strIngredient6 != "") || (drinkList.drinks.get(0).strIngredient6 != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure6 + " - " + drinkList.drinks.get(0).strIngredient6);
-                        }
-                        if(((drinkList.drinks.get(0).strMeasure7.toString() != "") || (drinkList.drinks.get(0).strMeasure7.toString() != " ")) && ((drinkList.drinks.get(0).strIngredient7.toString() != "") || (drinkList.drinks.get(0).strIngredient7.toString() != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure7 + " - " + drinkList.drinks.get(0).strIngredient7 + "toto je test");
-                        }
-                        if(((drinkList.drinks.get(0).strMeasure8.toString() != "") || (drinkList.drinks.get(0).strMeasure8.toString() != " ")) && ((drinkList.drinks.get(0).strIngredient8.toString() != "") || (drinkList.drinks.get(0).strIngredient8.toString() != " ")))
-                        {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure8 + " - " + drinkList.drinks.get(0).strIngredient8 + "ahoj");
+                        Drink drink = drinkList.drinks.get(0);
+                        List<Pair<String,String>> ingredients = new ArrayList<Pair<String,String>>();
+                        ingredients.add(new Pair(drink.strMeasure1,drink.strIngredient1));
+                        ingredients.add(new Pair(drink.strMeasure2,drink.strIngredient2));
+                        ingredients.add(new Pair(drink.strMeasure3,drink.strIngredient3));
+                        ingredients.add(new Pair(drink.strMeasure4,drink.strIngredient4));
+                        ingredients.add(new Pair(drink.strMeasure5,drink.strIngredient5));
+                        ingredients.add(new Pair(drink.strMeasure6,drink.strIngredient6));
+                        ingredients.add(new Pair(drink.strMeasure7,drink.strIngredient7));
+                        ingredients.add(new Pair(drink.strMeasure8,drink.strIngredient8));
+                        ingredients.add(new Pair(drink.strMeasure9,drink.strIngredient9));
+                        ingredients.add(new Pair(drink.strMeasure10,drink.strIngredient10));
+
+                        for(int i=0;i<10;i++){
+                            String measure = ingredients.get(i).first;
+                            String ingredient = ingredients.get(i).second;
+
+                            if(!measure.trim().isEmpty() && !ingredient.trim().isEmpty()){
+                                textView5.append("Item : " + i + ": " + measure + " - " +ingredient);
+                            }
+                            else if(measure.trim().isEmpty() && !ingredient.trim().isEmpty()){
+                                textView5.append("Item : " + i + ": " + ingredient);
+                            }
+
                         }
 
                     }
