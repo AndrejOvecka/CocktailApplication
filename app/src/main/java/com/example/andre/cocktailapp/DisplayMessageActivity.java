@@ -97,7 +97,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         textView5.setText("Ingredients: ");
                         Picasso.get().load(drinkList.drinks.get(0).strDrinkThumb).into(imageView);
                         closeKeyboard();
-                        if(((drinkList.drinks.get(0).strIngredient1 != "") || (drinkList.drinks.get(0).strIngredient1 != " ")) && ((drinkList.drinks.get(0).strIngredient1 != "") || (drinkList.drinks.get(0).strIngredient1 != " ")))
+                        if(((drinkList.drinks.get(0).strMeasure1.toString() != "") || (drinkList.drinks.get(0).strMeasure1.toString() != " ")) && ((drinkList.drinks.get(0).strIngredient1 != "") || (drinkList.drinks.get(0).strIngredient1 != " ")))
                         {
                             textView5.append("\n" + drinkList.drinks.get(0).strMeasure1 + " - " + drinkList.drinks.get(0).strIngredient1);
                         }
@@ -121,11 +121,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         {
                             textView5.append("\n" + drinkList.drinks.get(0).strMeasure6 + " - " + drinkList.drinks.get(0).strIngredient6);
                         }
-                        if(((drinkList.drinks.get(0).strMeasure7 != "") || (drinkList.drinks.get(0).strMeasure7 != " ")) && ((drinkList.drinks.get(0).strIngredient7 != "") || (drinkList.drinks.get(0).strIngredient7 != " ")))
+                        if(((drinkList.drinks.get(0).strMeasure7.toString() != "") || (drinkList.drinks.get(0).strMeasure7.toString() != " ")) && ((drinkList.drinks.get(0).strIngredient7.toString() != "") || (drinkList.drinks.get(0).strIngredient7.toString() != " ")))
                         {
-                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure7 + " - " + drinkList.drinks.get(0).strIngredient7);
+                            textView5.append("\n" + drinkList.drinks.get(0).strMeasure7 + " - " + drinkList.drinks.get(0).strIngredient7 + "toto je test");
                         }
-                        if(((drinkList.drinks.get(0).strMeasure8 != "") || (drinkList.drinks.get(0).strMeasure8 != " ")) && ((drinkList.drinks.get(0).strIngredient8 != "") || (drinkList.drinks.get(0).strIngredient8 != " ")))
+                        if(((drinkList.drinks.get(0).strMeasure8.toString() != "") || (drinkList.drinks.get(0).strMeasure8.toString() != " ")) && ((drinkList.drinks.get(0).strIngredient8.toString() != "") || (drinkList.drinks.get(0).strIngredient8.toString() != " ")))
                         {
                             textView5.append("\n" + drinkList.drinks.get(0).strMeasure8 + " - " + drinkList.drinks.get(0).strIngredient8 + "ahoj");
                         }
