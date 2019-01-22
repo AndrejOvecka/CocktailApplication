@@ -69,8 +69,6 @@ private Button Button;
                     DrinkList drinkList = gson.fromJson(json,DrinkList.class);
                     System.out.println(drinkList.drinks.get(0).strDrink);
                     Picasso.get().load(drinkList.drinks.get(0).strDrinkThumb).into(imageViewMain);
-
-
                 }
 
             }.execute();
@@ -78,9 +76,7 @@ private Button Button;
         });
     }
 
-    private void processPostExecute(Object o){
 
-        }
 
 
     public void openRandomDrink(){
