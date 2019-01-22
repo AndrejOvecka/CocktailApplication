@@ -54,9 +54,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
         final TextView textView5 = findViewById(R.id.textView5);
         final ImageView imageView = findViewById(R.id.imageView);
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final SharedPreferences.Editor editor = preferences.edit();
-        String namePref = preferences.getString("EditText","");
-        
+
+        String EditValue = preferences.getString("Edit_text_key","");
+        if(EditValue != "")
+            editTextName.setText(EditValue);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,9 +70,10 @@ public class DisplayMessageActivity extends AppCompatActivity {
                     protected Object doInBackground(Object[] objects) {
                         OkHttpClient client = new OkHttpClient();
                         String tmp = editTextName.getText().toString();
-                        String cocktail_name = tmp.replace(" ", "+");
-                        editor.putString("EditText", cocktail_name);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("Edit_text_key", tmp);
                         editor.commit();
+                        String cocktail_name = tmp.replace(" ", "+");
                         Request request = new Request.Builder()
                                 .url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktail_name)
                                 .build();
