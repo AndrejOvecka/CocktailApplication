@@ -19,8 +19,6 @@ import java.util.List;
 
 public class RandomDrink extends AppCompatActivity {
 
-    TextView tv, tv2, tv3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +38,8 @@ public class RandomDrink extends AppCompatActivity {
                 Request request = new Request.Builder()
                         .url("https://www.thecocktaildb.com/api/json/v1/1/random.php")
                         .build();
-
-
                 Response response = null;
                 try{
-
                     response = client.newCall(request).execute();
                     return response.body().string();
                 }
@@ -54,9 +49,6 @@ public class RandomDrink extends AppCompatActivity {
                 }
                 return null;
             }
-
-
-
 
             @Override
             protected void onPostExecute(Object o) {

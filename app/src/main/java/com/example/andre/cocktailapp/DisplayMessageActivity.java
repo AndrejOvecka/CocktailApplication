@@ -77,8 +77,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         Request request = new Request.Builder()
                                 .url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktail_name)
                                 .build();
-
-
                         editor.commit();
 
                         Response response = null;
@@ -93,9 +91,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         }
                         return null;
                     }
-
-
-
 
                     @Override
                     protected void onPostExecute(Object o) {

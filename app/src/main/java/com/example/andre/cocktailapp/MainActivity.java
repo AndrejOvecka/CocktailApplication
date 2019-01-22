@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -25,14 +27,14 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 private Button Button;
-String name;
-String category;
-String instruction;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final ImageView imageViewMain = findViewById(R.id.imageView2);
         Button = (Button) findViewById(R.id.Button);
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +49,8 @@ String instruction;
                     Request request = new Request.Builder()
                             .url("https://www.thecocktaildb.com/api/json/v1/1/random.php")
                             .build();
-
                     Response response = null;
+
 
                     try {
                         response = client.newCall(request).execute();
@@ -59,20 +61,25 @@ String instruction;
                     }
                     return null;
 
-                    }
+                }
                 @Override
                 protected void onPostExecute(Object o) {
-                    processPostExecute(o);
+                    String json = o.toString();
+                    Gson gson = new Gson();
+                    DrinkList drinkList = gson.fromJson(json,DrinkList.class);
+                    System.out.println(drinkList.drinks.get(0).strDrink);
+                    Picasso.get().load(drinkList.drinks.get(0).strDrinkThumb).into(imageViewMain);
+
+
                 }
+
             }.execute();
         }
         });
     }
 
     private void processPostExecute(Object o){
-        String json = o.toString();
-        Gson gson = new Gson();
-        DrinkList drinkList = gson.fromJson(json,DrinkList.class);
+
         }
 
 
