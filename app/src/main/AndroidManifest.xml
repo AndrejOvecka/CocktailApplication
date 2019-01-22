@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:label="Random drink"
             android:name=".RandomDrink"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -37,6 +38,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:label="Choose you drink"
             android:name=".DisplayMessageActivity"
             android:parentActivityName=".MainActivity">
 

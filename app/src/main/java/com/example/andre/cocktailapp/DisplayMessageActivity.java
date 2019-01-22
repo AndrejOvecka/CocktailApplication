@@ -2,7 +2,9 @@ package com.example.andre.cocktailapp;
 
 import android.app.VoiceInteractor;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,9 +53,10 @@ public class DisplayMessageActivity extends AppCompatActivity {
         final TextView textView4 = findViewById(R.id.textViewI);
         final TextView textView5 = findViewById(R.id.textView5);
         final ImageView imageView = findViewById(R.id.imageView);
-
-
-
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = preferences.edit();
+        String namePref = preferences.getString("EditText","");
+        
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,11 +67,16 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
                     protected Object doInBackground(Object[] objects) {
                         OkHttpClient client = new OkHttpClient();
-                        String cocktail_name = editTextName.getText().toString().replace(" ", "+");
+                        String tmp = editTextName.getText().toString();
+                        String cocktail_name = tmp.replace(" ", "+");
+                        editor.putString("EditText", cocktail_name);
+                        editor.commit();
                         Request request = new Request.Builder()
                                 .url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktail_name)
                                 .build();
 
+
+                        editor.commit();
 
                         Response response = null;
                         try{

@@ -27,26 +27,17 @@ public class MainActivity extends AppCompatActivity {
 private Button Button;
 String name;
 String category;
-
-
+String instruction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
         Button = (Button) findViewById(R.id.Button);
-        final TextView textView = findViewById(R.id.textView2);
-
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRandomDrink();
-
-
-
 
             AsyncTask asyncTask = new AsyncTask() {
                 @Override
@@ -82,13 +73,7 @@ String category;
         String json = o.toString();
         Gson gson = new Gson();
         DrinkList drinkList = gson.fromJson(json,DrinkList.class);
-        System.out.println(drinkList.drinks.get(0).strDrink);
-        name =(drinkList.drinks.get(0).strDrink);
-        category = (drinkList.drinks.get(0).strCategory);
-        Intent intent = new Intent(MainActivity.this, RandomDrink.class);
-        intent.putExtra("NAME", name);
-        intent.putExtra("CATEGORY", category);
-        startActivity(intent);    }
+        }
 
 
     public void openRandomDrink(){
